@@ -15,11 +15,16 @@ func CriarUsuario(w http.ResponseWriter, r *http.Request) {
 	corpoResquest, erro := io.ReadAll(r.Body)
 	if erro != nil {
 		respostas.Erro(w, http.StatusUnprocessableEntity, erro)
-		return 
+		return
 	}
 
 	var usuario modelos.Usuario
 	if erro = json.Unmarshal(corpoResquest, &usuario); erro != nil {
+		respostas.Erro(w, http.StatusBadRequest, erro)
+		return
+	}
+
+	if erro = usuario.Preparar(); erro != nil {
 		respostas.Erro(w, http.StatusBadRequest, erro)
 		return
 	}

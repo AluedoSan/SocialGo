@@ -4,7 +4,7 @@ import (
 	"api/src/config"
 	"database/sql"
 
-	_ "guthub.com/go-sql-driver/mysql" // Driver
+	_ "github.com/go-sql-driver/mysql" // Driver
 )
 
 // SECTION - Conectar() abre a conexão com o banco de dados
